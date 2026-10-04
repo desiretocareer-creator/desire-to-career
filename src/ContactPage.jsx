@@ -36,7 +36,7 @@ const submitContact = async (event) => {
   try {
     setIsSubmitting(true)
 
-    const response = await fetch('https://script.google.com/macros/s/AKfycbwsyhkBSkxRfSnHXR-B4WAUV5AuHpF2wIe60C3sAMOGyRsMn30OjfM1Xq5wzNcuQxW0eg/exec', {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbxvqqIqDggcVPBhDEvby-TA03z1dIk-gCxqKq4BThkVgcUeGCKGpaChLEXCgvsJS990/exec', {
       method: 'POST',
       mode: 'no-cors',
       body: data,
