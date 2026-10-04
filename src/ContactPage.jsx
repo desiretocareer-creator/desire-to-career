@@ -14,58 +14,46 @@ export default function ContactPage() {
     return () => { document.title = previousTitle }
   }, [])
 
-  const submitContact = async (event) => {
-    event.preventDefault()
+const submitContact = async (event) => {
+  event.preventDefault()
 
-    const form = event.currentTarget
-    const formData = new FormData(form)
+  const form = event.currentTarget
+  const formData = new FormData(form)
 
-    const data = new URLSearchParams()
+  const data = new URLSearchParams()
 
-    data.append("name", formData.get("name") || "")
-    data.append("email", formData.get("email") || "")
-    data.append("phone", formData.get("phone") || "")
-    data.append("personType", formData.get("personType") || "")
-    data.append("interest", formData.get("interest") || "")
-    data.append("message", formData.get("message") || "")
+  data.append("name", formData.get("name") || "")
+  data.append("email", formData.get("email") || "")
+  data.append("phone", formData.get("phone") || "")
+  data.append("personType", formData.get("personType") || "")
+  data.append("interest", formData.get("interest") || "")
+  data.append("message", formData.get("message") || "")
 
-    try {
-      await fetch(
-        {
-          method: "POST",
-          mode: "no-cors",
-          body: data
-        }
-      )
-      
+  try {
+    await fetch("https://script.google.com/macros/s/AKfycbw5e4qmcnOeWDAvESFVQWtRzPFZQyrWzc0KJNiQBgkyPRup85drpqq6uqdH88i9xGVU/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name,
+    email,
+    phone,
+    personType,
+    interest,
+    message
+  })
+});
 
-      fetch(
-        "https://script.google.com/macros/s/AKfycbw5e4qmcnOeWDAvESFVQWtRzPFZQyrWzc0KJNiQBgkyPRup85drpqq6uqdH88i9xGVU/exec",
+    setFormSent(true)
+    form.reset()
 
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            phone,
-            personType,
-            interest,
-            message
-          })
-        });
+  } catch (error) {
+    console.error("Form submission error:", error)
 
-      setFormSent(true)
-      form.reset()
-
-    } catch (error) {
-      console.error("Form submission error:", error)
-
-      alert("Something went wrong. Please try again.")
-    }
+    alert("Something went wrong. Please try again.")
   }
+}
   return (
     <div className="contact-page">
       <SiteNavigation />
@@ -89,41 +77,41 @@ export default function ContactPage() {
             <div className="contact-response-note"><span>RESPONSE STARTS WITH UNDERSTANDING.</span><span>NO AUTOMATED MATCHING OR PROMISES.</span></div>
           </div>
         </section>
-        <section className="world-section contact-world-section">
-          <div className="world-globe" aria-hidden="true">
-            <div className="globe-longitude" />
-            <div className="globe-latitude" />
-            <div className="globe-route" />
+<section className="world-section contact-world-section">
+  <div className="world-globe" aria-hidden="true">
+    <div className="globe-longitude" />
+    <div className="globe-latitude" />
+    <div className="globe-route" />
 
-            <i className="globe-pin pin-india" />
-            <i className="globe-pin pin-usa" />
-          </div>
+    <i className="globe-pin pin-india" />
+    <i className="globe-pin pin-usa" />
+  </div>
 
-          <div className="world-content">
-            <p className="eyebrow light">
-              A CONNECTION ACROSS DISTANCE
-            </p>
+  <div className="world-content">
+    <p className="eyebrow light">
+      A CONNECTION ACROSS DISTANCE
+    </p>
 
-            <h2>
-              TALENT HAS<br />
-              <i>NO BORDERS.</i>
-            </h2>
+    <h2>
+      TALENT HAS<br />
+      <i>NO BORDERS.</i>
+    </h2>
 
-            <p className="world-quote">
-              “Great talent knows no borders. The right opportunity shouldn’t either.”
-            </p>
+    <p className="world-quote">
+      “Great talent knows no borders. The right opportunity shouldn’t either.”
+    </p>
 
-            <div className="world-labels">
-              <span>INDIA</span>
+    <div className="world-labels">
+      <span>INDIA</span>
 
-              <span>
-                {siteConfig.internalUsClients}+ INTERNAL CLIENTS IN THE USA
-              </span>
+      <span>
+        {siteConfig.internalUsClients}+ INTERNAL CLIENTS IN THE USA
+      </span>
 
-              <span>UNITED STATES</span>
-            </div>
-          </div>
-        </section>
+      <span>UNITED STATES</span>
+    </div>
+  </div>
+</section>
 
       </main>
       <footer className="contact-page-footer"><a href="/" className="contact-footer-brand">DESIRE<br />TO CAREER<span>®</span></a><p>Connecting talent<br />with opportunity.</p><span>© {new Date().getFullYear()} DESIRE TO CAREER</span></footer>
