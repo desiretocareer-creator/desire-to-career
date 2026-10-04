@@ -18,7 +18,7 @@ export default function ContactPage() {
     }
   }, [])
 
- const submitContact = async (event) => {
+const submitContact = async (event) => {
   event.preventDefault()
 
   const form = event.currentTarget
@@ -33,19 +33,17 @@ export default function ContactPage() {
   data.append('interest', formData.get('interest') || '')
   data.append('message', formData.get('message') || '')
 
-  
   try {
     setIsSubmitting(true)
 
-    await fetch(
-      'https://script.google.com/macros/s/AKfycbw4f4bWT2i8w75YV8eqtdIL4dMp_5yGedX-knvVb0peb7SxxzelHOeiU5zFOpYfrIp3mA/exec',
-      {
-        method: 'POST',
-        mode: 'no-cors',
-        body: data,
-      }
-    )
+    const response = await fetch('https://script.google.com/macros/s/AKfycbwsyhkBSkxRfSnHXR-B4WAUV5AuHpF2wIe60C3sAMOGyRsMn30OjfM1Xq5wzNcuQxW0eg/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      body: data,
+    })
 
+    // With no-cors, the response is opaque.
+    // If the request reaches the endpoint, don't try response.json().
     setFormSent(true)
     form.reset()
 
