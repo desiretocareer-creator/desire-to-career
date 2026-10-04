@@ -18,47 +18,43 @@ export default function ContactPage() {
     }
   }, [])
 
-  const submitContact = async (event) => {
-    event.preventDefault()
+ const submitContact = async (event) => {
+  event.preventDefault()
 
-    const form = event.currentTarget
-    const formData = new FormData(form)
+  const form = event.currentTarget
+  const formData = new FormData(form)
 
-    // Convert form data to URLSearchParams
-    // This matches Google Apps Script e.parameter
-    const data = new URLSearchParams()
+  const data = new URLSearchParams()
 
-    data.append('name', formData.get('name') || '')
-    data.append('email', formData.get('email') || '')
-    data.append('phone', formData.get('phone') || '')
-    data.append('personType', formData.get('personType') || '')
-    data.append('interest', formData.get('interest') || '')
-    data.append('message', formData.get('message') || '')
+  data.append('name', formData.get('name') || '')
+  data.append('email', formData.get('email') || '')
+  data.append('phone', formData.get('phone') || '')
+  data.append('personType', formData.get('personType') || '')
+  data.append('interest', formData.get('interest') || '')
+  data.append('message', formData.get('message') || '')
 
-    try {
-      setIsSubmitting(true)
+  try {
+    setIsSubmitting(true)
 
-      const response = await fetch(
-        'https://script.google.com/macros/s/AKfycbw5e4qmcnOeWDAvESFVQWtRzPFZQyrWzc0KJNiQBgkyPRup85drpqq6uqdH88i9xGVU/exec',
-        {
-          method: 'POST',
-          body: data,
-        }
-      )
-
-      if (!response.ok) {
-        throw new Error(`Request failed: ${response.status}`)
+    await fetch(
+      'https://script.google.com/macros/s/AKfycbw5e4qmcnOeWDAvESFVQWtRzPFZQyrWzc0KJNiQBgkyPRup85drpqq6uqdH88i9xGVU/exec',
+      {
+        method: 'POST',
+        mode: 'no-cors',
+        body: data,
       }
+    )
 
-      setFormSent(true)
-      form.reset()
-    } catch (error) {
-      console.error('Form submission error:', error)
-      alert('Something went wrong. Please try again.')
-    } finally {
-      setIsSubmitting(false)
-    }
+    setFormSent(true)
+    form.reset()
+
+  } catch (error) {
+    console.error('Form submission error:', error)
+    alert('Something went wrong. Please try again.')
+  } finally {
+    setIsSubmitting(false)
   }
+}
 
   return (
     <div className="contact-page">
