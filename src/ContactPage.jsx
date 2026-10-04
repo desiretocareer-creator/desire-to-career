@@ -37,7 +37,7 @@ export default function ContactPage() {
     setIsSubmitting(true)
 
     await fetch(
-      'https://script.google.com/macros/s/AKfycbwXddkdArhKhHURE4pmnDxKn0nz4A1jJdxP-h38aCTIxUfzSdcW09TtbzCSsCwb8-7J/exec',
+      'https://script.google.com/macros/s/AKfycbw4f4bWT2i8w75YV8eqtdIL4dMp_5yGedX-knvVb0peb7SxxzelHOeiU5zFOpYfrIp3mA/exec',
       {
         method: 'POST',
         mode: 'no-cors',
