@@ -33,6 +33,7 @@ export default function ContactPage() {
   data.append('interest', formData.get('interest') || '')
   data.append('message', formData.get('message') || '')
 
+  
   try {
     setIsSubmitting(true)
 
