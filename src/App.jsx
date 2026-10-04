@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, BriefcaseBusiness, Building2, Check, ChevronDown, Cloud, Code2, Cog, Database, Globe2, HeartPulse, Landmark, Search, ShieldCheck, X } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { FaLinkedinIn, FaBriefcase } from 'react-icons/fa6'
@@ -38,13 +38,22 @@ const services = [
   { id: 'career-support', number: '05', title: 'Career support', text: 'A thoughtful partner as you navigate the next step in your career.', image: photos.candidate, tone: 'paper' },
 ]
 
+const connectedCompanies = [
+  'Apex Labs', 'Northstar', 'BluePeak', 'HarborOne', 'Summit', 'Vertex', 'Northwind', 'BrightPath', 'Altura', 'Mercury', 'Crescent', 'NovaGrid', 'EchoPoint', 'SignalWorks', 'Horizon', 'Lattice', 'SilverPeak', 'PrimeCore', 'Atlas', 'Stonebridge', 'CoreLink', 'Wavefront', 'Vitality', 'Quantum', 'Redwood', 'Oakline', 'Endeavor', 'GoalForge', 'Citadel', 'Cobalt', 'Saffron', 'Helio', 'Nexa', 'Pillar', 'RouteOne', 'FrameWorks'
+]
+
+const connectedCompanyRows = [
+  connectedCompanies.slice(0, 18),
+  connectedCompanies.slice(18),
+]
+
 const faqs = [
   ['How does Desire to Career help candidates?', 'We support professionals with resume development, profile marketing, technical preparation, interview practice and career guidance.'],
   ['Do you help build resumes?', 'Yes. We help candidates present their experience clearly and tailor their resume to the roles they are pursuing.'],
   ['Do you provide technical preparation?', 'We offer role-focused technical preparation, project explanation practice and mock interviews.'],
   ['What IT roles do you support?', 'Our focus includes software, data, cloud, cybersecurity, QA and AI/ML career paths.'],
   ['What Non-IT roles do you support?', 'We work across areas such as finance, healthcare, engineering, sales, marketing, operations and administration.'],
-  ['Do you work with USA clients?', 'Desire to Career works with 24+ internal clients in the USA. Specific client names and locations are not published here.'],
+  ['Do you work with USA clients?', 'Desire to Career works with 25+ internal clients in the USA. Specific client names and locations are not published here.'],
   ['How can I submit my resume?', 'Use the contact form to tell us about yourself. Our team can follow up about sharing your resume securely.'],
   ['How can employers work with you?', 'Employers can use the contact form to start a conversation about staffing, sourcing and candidate pipeline support.'],
 ]
@@ -73,12 +82,14 @@ const specialtyFields = [
   { name: 'Operations', url: '/non-it#sales-marketing', Icon: BriefcaseBusiness },
 ]
 
-function Counter  ({ value, suffix = '+' })  {
+function Counter({ value, suffix = '+' }) {
   const [count, setCount] = useState(0)
+  const spanRef = useRef(null)
 
   useEffect(() => {
-    const node = document.querySelector('[data-client-counter]')
+    const node = spanRef.current
     if (!node) return undefined
+
     let frame = 0
     let startedAt = 0
     const observer = new IntersectionObserver(([entry]) => {
@@ -92,6 +103,7 @@ function Counter  ({ value, suffix = '+' })  {
       frame = requestAnimationFrame(animate)
       observer.disconnect()
     }, { threshold: 0.5 })
+
     observer.observe(node)
     return () => {
       observer.disconnect()
@@ -99,7 +111,7 @@ function Counter  ({ value, suffix = '+' })  {
     }
   }, [value])
 
-  return <span data-client-counter>{count}{suffix}</span>
+  return <span ref={spanRef} data-client-counter>{count}{suffix}</span>
 }
 
 function App() {
@@ -164,6 +176,8 @@ function App() {
       <SiteNavigation />
 
       <main id="top">
+
+        
         <section className="hero-section">
           <div className="hero-copy">
             <p className="eyebrow"><span className="eyebrow-dot" /> CAREER, WITH INTENTION</p>
@@ -211,44 +225,563 @@ function App() {
           </div>
           <a className="scroll-cue" href="#possibilities"><span>SCROLL TO EXPLORE</span><ArrowDown size={15} /></a>
         </section>
-
-        <section className="full-bleed-image" id="possibilities" style={{
-    backgroundImage:
-      "url('https://images.unsplash.com/photo-1644088379091-d574269d422f?q=80&w=1693&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+<section
+  className="company-glance-section"
+  aria-label="Desire To Career company network and statistics"
+  style={{
+    padding: "80px 24px",
+    background: "#f7faff",
+    borderRadius: "32px",
+    margin: "40px 0",
   }}
 >
-          <div className="full-image-scrim" />
-          <div className="full-image-copy" data-reveal>
-            <span className="eyebrow light">A MORE HUMAN WAY FORWARD</span>
-            <h2>WE CONNECT PEOPLE<br />WITH <i>POSSIBILITIES.</i></h2>
-          </div>
-          <span className="image-index">01 / PEOPLE IN MOTION</span>
-        </section>
+  {/* HEADER */}
+  <div
+    className="company-glance-header"
+    style={{
+      maxWidth: "900px",
+      margin: "0 auto 45px",
+      textAlign: "center",
+    }}
+  >
+    <span
+      className="numbers-badge"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "8px",
+        padding: "8px 16px",
+        borderRadius: "30px",
+        background: "#ffffff",
+        border: "1px solid #dbe5f5",
+        color: "#173b78",
+        fontSize: "12px",
+        fontWeight: "700",
+        letterSpacing: "0.08em",
+      }}
+    >
+      <span
+        className="badge-dot"
+        style={{
+          width: "8px",
+          height: "8px",
+          borderRadius: "50%",
+          background: "#ff7a00",
+        }}
+      />
+      OUR NETWORK • UPDATED REGULARLY
+    </span>
 
-        <section className="manifesto-section" id="approach">
-          <div className="manifesto-label"><span>OUR BELIEF</span><span>01 — 05</span></div>
-          <div className="manifesto-content">
-            <h2 data-reveal>GOOD SKILLS<br /><span>DESERVE</span><br />THE RIGHT<br /><i>OPPORTUNITY.</i></h2>
-            <div className="manifesto-note" data-reveal>
-              <span className="note-rule" />
-              <p>Careers are built one thoughtful step at a time. We help professionals show up prepared, tell their story well and connect with the next possibility.</p>
-              <a href="#services" className="round-link" aria-label="Explore our support"><ArrowDownRight size={22} /></a>
-            </div>
-          </div>
-        </section>
+    <h2
+      style={{
+        margin: "20px 0 12px",
+        fontSize: "clamp(32px, 5vw, 52px)",
+        lineHeight: "1.1",
+        fontWeight: "800",
+        color: "#102d5c",
+      }}
+    >
+      Good work travels{" "}
+      <em
+        style={{
+          color: "#f47721",
+          fontStyle: "normal",
+        }}
+      >
+        further.
+      </em>
+    </h2>
 
-        {/* <section className="numbers-section" aria-label="Our USA client network">
-          <div className="numbers-intro"><span className="eyebrow light">A NETWORK BUILT ON CONNECTION</span><p>Relationships create room for the right next step.</p></div>
-          <div className="number-item"><strong><Counter value={siteConfig.internalUsClients} /></strong><span>INTERNAL CLIENTS<br />IN THE USA</span></div>
-          <div className="numbers-foot"><span>OUR NETWORK</span><span>01 / USA</span></div>
-        </section> */}
-        {/* <NumbersSection siteConfig={siteConfig} /> */}
+    <p
+      style={{
+        margin: "0 auto",
+        maxWidth: "680px",
+        color: "#64748b",
+        fontSize: "16px",
+        lineHeight: "1.7",
+      }}
+    >
+      A growing network of companies, professionals, and career
+      opportunities across the USA.
+    </p>
+  </div>
+
+  {/* CONNECTED COMPANY NETWORK */}
+  <div
+    className="connected-company-box"
+    style={{
+      maxWidth: "1100px",
+      margin: "0 auto 45px",
+      padding: "28px",
+      background: "#ffffff",
+      borderRadius: "24px",
+      border: "1px solid #e2e8f0",
+      boxShadow: "0 12px 35px rgba(16,45,92,0.07)",
+    }}
+  >
+    <div
+      className="connected-company-header"
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        gap: "20px",
+        flexWrap: "wrap",
+        marginBottom: "25px",
+      }}
+    >
+      <div>
+        <p
+          style={{
+            margin: "0 0 8px",
+            color: "#f47721",
+            fontSize: "12px",
+            fontWeight: "800",
+            letterSpacing: "0.08em",
+          }}
+        >
+          A NETWORK THAT KEEPS MOVING
+        </p>
+
+        <h3
+          style={{
+            margin: 0,
+            color: "#102d5c",
+            fontSize: "24px",
+            fontWeight: "800",
+          }}
+        >
+          Companies connected to opportunities.
+        </h3>
+      </div>
+
+      <div
+        style={{
+          padding: "10px 18px",
+          borderRadius: "14px",
+          background: "#eef5ff",
+          color: "#173b78",
+          fontSize: "14px",
+          fontWeight: "700",
+        }}
+      >
+        <strong style={{ fontSize: "22px", color: "#f47721" }}>
+          {siteConfig.internalUsClients}+
+        </strong>{" "}
+        connected companies
+      </div>
+    </div>
+
+    {/* COMPANY MARQUEE */}
+    <div
+      className="company-marquee"
+      aria-label="Company network"
+      style={{
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+      }}
+    >
+      {connectedCompanyRows.map((row, rowIndex) => (
+        <div
+          className={`company-marquee-row ${rowIndex === 1 ? 'is-reversed' : ''}`}
+          key={rowIndex}
+          style={{ overflow: 'hidden' }}
+        >
+          <div className="company-marquee-track" role="list">
+            {[...row, ...row].map((company, index) => {
+              const isDuplicate = index >= row.length
+              const isBlurred = rowIndex > 0 || index >= 4
+
+              return (
+              <span
+                key={`${company}-${index}`}
+                className={`company-pill${isBlurred ? ' is-blurred' : ''}`}
+                role="listitem"
+                aria-hidden={isDuplicate}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "10px 16px",
+                  background: "#f8fafc",
+                  border: "1px solid #e2e8f0",
+                  borderRadius: "12px",
+                  color: "#173b78",
+                  fontSize: "13px",
+                  fontWeight: "700",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <span
+                  className="company-mark"
+                  aria-hidden="true"
+                  style={{
+                    width: "28px",
+                    height: "28px",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: "8px",
+                    background: "#173b78",
+                    color: "#ffffff",
+                    fontSize: "12px",
+                    fontWeight: "800",
+                  }}
+                >
+                  {company.slice(0, 1)}
+                </span>
+
+                {company}
+              </span>
+              )
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p
+      style={{
+        margin: "20px 0 0",
+        color: "#94a3b8",
+        fontSize: "12px",
+        textAlign: "center",
+      }}
+    >
+      Some partner names are intentionally kept private.
+    </p>
+  </div>
+
+  {/* NUMBER CARDS */}
+  <div
+    className="numbers-grid"
+    style={{
+      maxWidth: "1100px",
+      margin: "0 auto",
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+      gap: "18px",
+    }}
+  >
+    {/* CARD 1 */}
+    <div
+      className="number-card blue-card"
+      style={{
+        padding: "26px",
+        borderRadius: "22px",
+        background: "#ffffff",
+        border: "1px solid #dbe5f5",
+        boxShadow: "0 10px 30px rgba(16,45,92,0.06)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <span className="company-stat-icon"><Building2 size={25} /></span>
+
+        <span
+          style={{
+            padding: "6px 10px",
+            borderRadius: "20px",
+            background: "#eef5ff",
+            color: "#1769e0",
+            fontSize: "10px",
+            fontWeight: "800",
+          }}
+        >
+          USA NETWORK
+        </span>
+      </div>
+
+      <strong
+        style={{
+          display: "block",
+          marginTop: "25px",
+          fontSize: "48px",
+          lineHeight: 1,
+          color: "#1769e0",
+        }}
+      >
+          <Counter value={siteConfig.internalUsClients} />
+        </strong>
+
+      <h3 style={{ margin: "14px 0 8px", color: "#102d5c" }}>
+        Companies Connected
+      </h3>
+
+      <p
+        style={{
+          margin: 0,
+          color: "#64748b",
+          fontSize: "14px",
+          lineHeight: 1.6,
+        }}
+      >
+        Companies and hiring networks connected across the USA.
+      </p>
+
+      <div
+        style={{
+          height: "4px",
+          marginTop: "22px",
+          borderRadius: "10px",
+          background: "#1769e0",
+        }}
+      />
+    </div>
+
+    {/* CARD 2 */}
+    <div
+      className="number-card orange-card"
+      style={{
+        padding: "26px",
+        borderRadius: "22px",
+        background: "#ffffff",
+        border: "1px solid #fde3d0",
+        boxShadow: "0 10px 30px rgba(16,45,92,0.06)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <span className="company-stat-icon"><BriefcaseBusiness size={25} /></span>
+
+        <span
+          style={{
+            padding: "6px 10px",
+            borderRadius: "20px",
+            background: "#fff3e8",
+            color: "#f47721",
+            fontSize: "10px",
+            fontWeight: "800",
+          }}
+        >
+          PROJECT SUPPORT
+        </span>
+      </div>
+
+      <strong
+        style={{
+          display: "block",
+          marginTop: "25px",
+          fontSize: "38px",
+          lineHeight: 1,
+          color: "#f47721",
+        }}
+      >
+        AVAILABLE
+      </strong>
+
+      <h3 style={{ margin: "14px 0 8px", color: "#102d5c" }}>
+        Freelance Opportunities
+      </h3>
+
+      <p
+        style={{
+          margin: 0,
+          color: "#64748b",
+          fontSize: "14px",
+          lineHeight: 1.6,
+        }}
+      >
+        Flexible professionals available for project-based opportunities.
+      </p>
+
+      <div
+        style={{
+          height: "4px",
+          marginTop: "22px",
+          borderRadius: "10px",
+          background: "#f47721",
+        }}
+      />
+    </div>
+
+    {/* CARD 3 */}
+    <div
+      className="number-card purple-card"
+      style={{
+        padding: "26px",
+        borderRadius: "22px",
+        background: "#ffffff",
+        border: "1px solid #e8ddff",
+        boxShadow: "0 10px 30px rgba(16,45,92,0.06)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <span className="company-stat-icon"><Check size={25} /></span>
+
+        <span
+          style={{
+            padding: "6px 10px",
+            borderRadius: "20px",
+            background: "#f3edff",
+            color: "#7652d9",
+            fontSize: "10px",
+            fontWeight: "800",
+          }}
+        >
+          CAREER SUPPORT
+        </span>
+      </div>
+
+      <strong
+        style={{
+          display: "block",
+          marginTop: "25px",
+          fontSize: "48px",
+          lineHeight: 1,
+          color: "#7652d9",
+        }}
+      >
+        100<span>%</span>
+      </strong>
+
+      <h3 style={{ margin: "14px 0 8px", color: "#102d5c" }}>
+        Career Focused
+      </h3>
+
+      <p
+        style={{
+          margin: 0,
+          color: "#64748b",
+          fontSize: "14px",
+          lineHeight: 1.6,
+        }}
+      >
+        Dedicated guidance focused on helping professionals move forward.
+      </p>
+
+      <div
+        style={{
+          height: "4px",
+          marginTop: "22px",
+          borderRadius: "10px",
+          background: "#7652d9",
+        }}
+      />
+    </div>
+
+    {/* CARD 4 */}
+    <div
+      className="number-card green-card"
+      style={{
+        padding: "26px",
+        borderRadius: "22px",
+        background: "#ffffff",
+        border: "1px solid #d8f3e7",
+        boxShadow: "0 10px 30px rgba(16,45,92,0.06)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <span className="company-stat-icon"><ArrowUpRight size={25} /></span>
+
+        <span
+          style={{
+            padding: "6px 10px",
+            borderRadius: "20px",
+            background: "#eafaf3",
+            color: "#16a36a",
+            fontSize: "10px",
+            fontWeight: "800",
+          }}
+        >
+          OUR APPROACH
+        </span>
+      </div>
+
+      <strong
+        style={{
+          display: "block",
+          marginTop: "25px",
+          fontSize: "38px",
+          lineHeight: 1,
+          color: "#16a36a",
+        }}
+      >
+        GROWTH
+      </strong>
+
+      <h3 style={{ margin: "14px 0 8px", color: "#102d5c" }}>
+        Built for Your Future
+      </h3>
+
+      <p
+        style={{
+          margin: 0,
+          color: "#64748b",
+          fontSize: "14px",
+          lineHeight: 1.6,
+        }}
+      >
+        Connecting skills, opportunities, and professional growth.
+      </p>
+
+      <div
+        style={{
+          height: "4px",
+          marginTop: "22px",
+          borderRadius: "10px",
+          background: "#16a36a",
+        }}
+      />
+    </div>
+  </div>
+
+  {/* FOOTER */}
+  <div
+    className="numbers-footer"
+    style={{
+      maxWidth: "1100px",
+      margin: "35px auto 0",
+      paddingTop: "22px",
+      borderTop: "1px solid #dbe5f5",
+      display: "flex",
+      justifyContent: "space-between",
+      gap: "15px",
+      flexWrap: "nowrap",
+      color: "#173b78",
+      fontSize: "12px",
+      fontWeight: "800",
+      letterSpacing: "0.08em",
+    }}
+  >
+    <span>DESIRE TO CAREER</span>
+    <span style={{ color: "#f47721" }}>
+      YOUR CAREER. OUR PRIORITY.
+    </span>
+  </div>
+</section>
+
+     
 
         <section className="connection-section">
           <div className="connection-copy" data-reveal>
             <p className="eyebrow">ROOTED HERE. CONNECTED THERE.</p>
             <h2>TALENT CAN<br />START <i>ANYWHERE.</i><br />OPPORTUNITY<br />CAN TAKE YOU<br /><i>FURTHER.</i></h2>
-            <p className="connection-description">A people-centered connection between professionals and opportunities with our network of 24+ internal clients in the USA.</p>
+            <p className="connection-description">A people-centered connection between professionals and opportunities with our network of {siteConfig.internalUsClients}+ internal clients in the USA.</p>
           </div>
           <div className="route-visual" aria-label="Illustrative connection between India and the United States">
             <div className="route-orbit orbit-one" /><div className="route-orbit orbit-two" />
@@ -256,7 +789,7 @@ function App() {
               <defs><linearGradient id="routeGradient" x1="0" x2="1"><stop stopColor="#8db9ff" /><stop offset="1" stopColor="#e9f1ff" /></linearGradient></defs>
               <path className="route-path" d="M158 152 C 275 60, 380 312, 575 195" />
               <path className="route-dash" d="M158 152 C 275 60, 380 312, 575 195" />
-              <circle className="route-point route-point-india" cx="158" cy="152" r="8" /><circle className="route-point route-point-usa" cx="575" cy="195" r="8" />
+              {/* <circle className="route-point route-point-india" cx="158" cy="152" r="8" /><circle className="route-point route-point-usa" cx="575" cy="195" r="8" /> */}
               <text x="125" y="190">USA</text><text x="552" y="234">USA</text>
             </svg>
             <span className="route-note">CAREER IS A JOURNEY<br />WE HELP MAKE THE CONNECTION.</span>
@@ -306,38 +839,6 @@ function App() {
             <div className="profile-panel-foot"><span>CLARITY IS A SIGNAL.</span><ArrowUpRight size={18} /></div>
           </div>
         </section>
-{/* 
-        <section className="technical-section">
-          <div className="technical-image" style={{ backgroundImage: `url(${image(photos.preparation, 1900)})` }} />
-          <div className="technical-overlay" />
-          <div className="technical-copy" data-reveal><p className="eyebrow light">03 / PREPARE WITH PURPOSE</p><h2>KNOW YOUR SKILLS.<br /><i>EXPLAIN</i> YOUR SKILLS.<br />SHOW YOUR SKILLS.</h2></div>
-          <div className="technical-bottom"><span>TECHNICAL PREPARATION</span><span>MOCK INTERVIEWS</span><span>PROJECT EXPLANATION</span><span>ROLE-SPECIFIC PRACTICE</span><span>INTERVIEW QUESTIONS</span></div>
-        </section> */}
-
-        <section className="it-section">
-          <div className="it-copy"><p className="eyebrow">04 / TECHNOLOGY TALENT</p><h2>THE TECHNOLOGY<br /><i>TALENT</i><br />BEHIND<br />THE FUTURE.</h2><p>We support professionals across changing technology disciplines, from foundations to what&apos;s next.</p></div>
-          <div className="tech-image" style={{ backgroundImage: `url(${image(photos.team, 1300)})` }}><span>PEOPLE WHO BUILD WHAT&apos;S NEXT</span></div>
-          <div className="tech-marquee" aria-label="Technology focus areas"><div>{['AI / ML', 'Python', 'Java', 'React', 'Node.js', 'Data', 'Cloud', 'DevOps', 'Cybersecurity', 'QA', 'SQL'].map((tech) => <span key={tech}>{tech}<i>✳</i></span>)}</div></div>
-        </section>
-{/* 
-        <section className="ai-section">
-          <div className="ai-backdrop" style={{ backgroundImage: `url(${image(photos.ai, 1600)})` }} />
-          <div className="ai-grid" />
-          <div className="ai-copy" data-reveal><p className="eyebrow light">A NEW FRONTIER / AI &amp; MACHINE LEARNING</p><h2>INTELLIGENCE<br /><i>MEETS</i><br />OPPORTUNITY.</h2><p>Connect specialist capability to emerging work across intelligent systems.</p></div>
-          <div className="ai-tags">{['AI Engineering', 'Machine Learning', 'Deep Learning', 'Generative AI', 'NLP', 'Computer Vision', 'Data Science', 'MLOps'].map((tag) => <span key={tag}>{tag}</span>)}</div>
-          <div className="ai-orb" aria-hidden="true"><div /><div /><div /><div /><div /><div /><div /><div /></div>
-        </section> */}
-
-        {/* <section className="data-section">
-          <div className="data-heading"><p className="eyebrow">SEE THE SIGNAL IN THE NOISE</p><h2>TURN DATA<br />INTO <i>DECISIONS.</i></h2><p>Analytics talent that turns information into insight and action.</p></div>
-          <div className="chart-wrap" aria-label="Illustrative analytics visualization">
-            <div className="chart-caption"><span>ANALYTICS / ILLUSTRATIVE VIEW</span><span>DATA → DIRECTION</span></div>
-            <div className="chart-grid"><div className="chart-ylabels"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div><div className="chart-plot"><svg viewBox="0 0 700 300" preserveAspectRatio="none" role="presentation" aria-hidden="true"><defs><linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#4181d2" stopOpacity=".2" /><stop offset="1" stopColor="#4181d2" stopOpacity="0" /></linearGradient></defs><path className="chart-area" d="M0 250 C60 238 75 195 133 210 S200 162 252 186 S327 116 380 153 S440 90 492 126 S570 65 615 91 S667 40 700 20 V300 H0 Z" /><path className="chart-line" d="M0 250 C60 238 75 195 133 210 S200 162 252 186 S327 116 380 153 S440 90 492 126 S570 65 615 91 S667 40 700 20" /></svg></div></div>
-            <div className="chart-xlabels"><span>Q1</span><span>Q2</span><span>Q3</span><span>Q4</span><span>NEXT</span></div>
-            <div className="data-roles">{['Data Analyst', 'Data Scientist', 'Data Engineer', 'BI Developer'].map((role) => <span key={role}>{role}</span>)}</div>
-            <div className="data-tools">PYTHON / SQL / POWER BI / TABLEAU / EXCEL</div>
-          </div>
-        </section> */}
 
         <section className="cloud-section" style={{ backgroundImage: `url(${image(photos.cloud, 1900)})` }}>
           <div className="cloud-wash" /><div className="cloud-copy" data-reveal><p className="eyebrow">CLOUD &amp; DEVOPS</p><h2>BUILD.<br /><i>DEPLOY.</i><br />SCALE.</h2></div>

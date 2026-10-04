@@ -1,4 +1,4 @@
 export const siteConfig = {
-  internalUsClients: 24,
+  internalUsClients: 25,
   whatsappBusinessUrl: '',
 }

@@ -484,20 +484,21 @@ export default function SiteNavigation({ theme = 'dark' }) {
 
 .mega-menu {
   position: absolute;
-  top: calc(100% + 14px);
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%) translateY(8px);
 
-  min-width: 260px;
+  width: 360px;
+  max-width: min(360px, calc(100vw - 40px));
   border-radius: 18px;
-  padding: 16px;
+  padding: 18px;
 
-  background: rgba(0, 0, 0, 0.68);
+  background: rgba(11, 26, 42, 0.97);
   backdrop-filter: blur(25px) saturate(180%);
   -webkit-backdrop-filter: blur(25px) saturate(180%);
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(183, 211, 244, 0.2);
+  box-shadow: 0 22px 50px rgba(4, 13, 22, 0.38);
 
   opacity: 0;
   visibility: hidden;
@@ -507,7 +508,21 @@ export default function SiteNavigation({ theme = 'dark' }) {
 }
 
 .mega-menu-wide {
-  min-width: 500px;
+  width: min(760px, calc(100vw - 48px));
+  max-width: 760px;
+}
+
+#services-menu .mega-inner,
+#resources-menu .mega-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+}
+
+#industries-menu .mega-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .nav-dropdown.is-open .mega-menu {
@@ -518,12 +533,12 @@ export default function SiteNavigation({ theme = 'dark' }) {
 }
 
 .mega-label {
-  color: rgba(255, 255, 255, 0.55) !important;
-  font-size: 11px;
+  color: #b7d3f4 !important;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .mega-links {
@@ -540,14 +555,19 @@ export default function SiteNavigation({ theme = 'dark' }) {
   text-decoration: none;
   color: #ffffff !important;
 
-  padding: 10px 12px;
-  border-radius: 12px;
+  min-height: 40px;
+  padding: 9px 11px;
+  border: 1px solid rgba(183, 211, 244, 0.08);
+  border-radius: 10px;
+  color: #f4f8fc !important;
+  font-size: 12px;
 
   transition: all 0.2s ease;
 }
 
 .mega-link:hover {
-  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(183, 211, 244, 0.22);
+  background: rgba(183, 211, 244, 0.1);
   color: #ffffff !important;
 }
 
@@ -572,11 +592,11 @@ export default function SiteNavigation({ theme = 'dark' }) {
 
 .industry-group-title {
   display: block;
-  color: rgba(255, 255, 255, 0.55) !important;
-  font-size: 11px;
+  color: #9dbadd !important;
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: 2px;
-  margin-bottom: 8px;
+  letter-spacing: 0.13em;
+  margin-bottom: 9px;
 }
 
 /* ==================== CONTACT BUTTON ==================== */
@@ -735,7 +755,7 @@ export default function SiteNavigation({ theme = 'dark' }) {
 
 .mega-menu {
   position: absolute;
-  top: calc(100% + 8px); /* smaller gap */
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%) translateY(10px);
 
@@ -752,6 +772,64 @@ export default function SiteNavigation({ theme = 'dark' }) {
   visibility: visible;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
+}
+
+@media (min-width: 1201px) {
+  #services-menu .mega-links,
+  #resources-menu .mega-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  #industries-menu .industry-groups {
+    gap: 22px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .main-nav .mega-menu,
+  .main-nav .mega-menu-wide {
+    position: static;
+    top: auto;
+    left: auto;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    max-height: 0;
+    display: block;
+    margin: 0;
+    padding: 0 10px;
+    overflow: hidden;
+    border: 0;
+    border-radius: 12px;
+    background: rgba(183, 211, 244, 0.06);
+    box-shadow: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: none;
+    transition: max-height .3s ease, opacity .2s ease, padding .25s ease, visibility .2s ease;
+  }
+
+  .main-nav .nav-dropdown.is-open > .mega-menu {
+    max-height: 720px;
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid rgba(183, 211, 244, .14);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .main-nav .nav-dropdown:hover .mega-menu {
+    transform: none;
+  }
+
+  .main-nav .mega-link {
+    min-height: 38px;
+    font-size: 11px;
+  }
 }
   
 /* FORCE WHITE TEXT FOR ALL THEMES */
