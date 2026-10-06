@@ -228,6 +228,7 @@ function App() {
 <section
   className="company-glance-section"
   aria-label="Desire To Career company network and statistics"
+  data-reveal
   style={{
     padding: "80px 24px",
     background: "#f7faff",
@@ -309,6 +310,7 @@ function App() {
   {/* CONNECTED COMPANY NETWORK */}
   <div
     className="connected-company-box"
+    data-reveal
     style={{
       maxWidth: "1100px",
       margin: "0 auto 45px",
@@ -778,12 +780,12 @@ function App() {
      
 
         <section className="connection-section">
-          <div className="connection-copy" data-reveal>
+          <div className="connection-copy" data-reveal="left">
             <p className="eyebrow">ROOTED HERE. CONNECTED THERE.</p>
             <h2>TALENT CAN<br />START <i>ANYWHERE.</i><br />OPPORTUNITY<br />CAN TAKE YOU<br /><i>FURTHER.</i></h2>
             <p className="connection-description">A people-centered connection between professionals and opportunities with our network of {siteConfig.internalUsClients}+ internal clients in the USA.</p>
           </div>
-          <div className="route-visual" aria-label="Illustrative connection between India and the United States">
+          <div className="route-visual" data-reveal="right" aria-label="Illustrative connection between India and the United States">
             <div className="route-orbit orbit-one" /><div className="route-orbit orbit-two" />
             <svg viewBox="0 0 760 440" role="presentation" aria-hidden="true">
               <defs><linearGradient id="routeGradient" x1="0" x2="1"><stop stopColor="#8db9ff" /><stop offset="1" stopColor="#e9f1ff" /></linearGradient></defs>
@@ -797,7 +799,7 @@ function App() {
         </section>
 
         <section className="services-section" id="services">
-          <div className="section-heading services-heading"><p className="eyebrow">SUPPORT, AT EVERY STEP</p><h2>A JOURNEY<br />BUILT <i>AROUND YOU.</i></h2><span className="heading-side-note">FROM FIRST DRAFT<br />TO NEXT OPPORTUNITY</span></div>
+          <div className="section-heading services-heading" data-reveal="left"><p className="eyebrow">SUPPORT, AT EVERY STEP</p><h2>A JOURNEY<br />BUILT <i>AROUND YOU.</i></h2><span className="heading-side-note">FROM FIRST DRAFT<br />TO NEXT OPPORTUNITY</span></div>
           <div className="service-list">
             {services.map((service, index) => (
               <article className={`service-row service-${service.tone}`} id={service.id} key={service.number} data-reveal>
@@ -811,8 +813,8 @@ function App() {
         </section>
 
         <section className="resume-section" id="resume">
-          <div className="resume-photo" style={{ backgroundImage: `url(${image(photos.resume, 1400)})` }} role="img" aria-label="Professional reviewing documents at a desk"><span className="photo-tag">MAKE YOUR EXPERIENCE<br />EASY TO SEE.</span></div>
-          <div className="resume-content" data-reveal>
+          <div className="resume-photo" data-reveal="left" style={{ backgroundImage: `url(${image(photos.resume, 1400)})` }} role="img" aria-label="Professional reviewing documents at a desk"><span className="photo-tag">MAKE YOUR EXPERIENCE<br />EASY TO SEE.</span></div>
+          <div className="resume-content" data-reveal="right">
             <p className="eyebrow">01 / YOUR STORY, WELL TOLD</p><h2>A RESUME<br />THAT <i>OPENS</i><br />THE DOOR.</h2>
             <p>Clear structure. Strong language. A focused account of the work you can do next.</p>
             <button className="button button-outline" type="button" onClick={() => setResumeOpen(true)}>View sample resume <ArrowUpRight size={16} /></button>
@@ -830,8 +832,8 @@ function App() {
         </section>
 
         <section className="profile-section" id="profile-marketing">
-          <div className="profile-left"><p className="eyebrow light">02 / SHOW UP WITH INTENTION</p><h2>BE<br />DISCOVERED<br /><i>BEFORE</i><br />YOU ARE<br />CONTACTED.</h2><p>Make your professional profile work harder with thoughtful positioning and clearer signals.</p></div>
-          <div className="profile-panel" aria-label="Illustrative professional profile interface">
+          <div className="profile-left" data-reveal="left"><p className="eyebrow light">02 / SHOW UP WITH INTENTION</p><h2>BE<br />DISCOVERED<br /><i>BEFORE</i><br />YOU ARE<br />CONTACTED.</h2><p>Make your professional profile work harder with thoughtful positioning and clearer signals.</p></div>
+          <div className="profile-panel" data-reveal="right" aria-label="Illustrative professional profile interface">
             <div className="profile-top"><span>PROFILE POSITIONING</span><span className="profile-live"><i /> OPTIMIZATION IN PROGRESS</span></div>
             <div className="profile-user"><div className="profile-avatar">P</div><div><span className="profile-tag">SAMPLE PROFILE · NOT A REAL PERSON</span><h3>Professional Profile</h3><p>Technology · Product-minded · USA opportunities</p></div></div>
             <div className="profile-progress"><span>PROFILE CLARITY</span><div><i /></div><strong>01</strong></div>
@@ -841,21 +843,21 @@ function App() {
         </section>
 
         <section className="cloud-section" style={{ backgroundImage: `url(${image(photos.cloud, 1900)})` }}>
-          <div className="cloud-wash" /><div className="cloud-copy" data-reveal><p className="eyebrow">CLOUD &amp; DEVOPS</p><h2>BUILD.<br /><i>DEPLOY.</i><br />SCALE.</h2></div>
+          <div className="cloud-wash" /><div className="cloud-copy" data-reveal="left"><p className="eyebrow">CLOUD &amp; DEVOPS</p><h2>BUILD.<br /><i>DEPLOY.</i><br />SCALE.</h2></div>
           <div className="cloud-tools">AWS <span>·</span> AZURE <span>·</span> GOOGLE CLOUD <span>·</span> DOCKER <span>·</span> KUBERNETES <span>·</span> CI/CD</div>
           <span className="cloud-caption">INFRASTRUCTURE FOR WHAT&apos;S NEXT</span>
         </section>
 
         <section className="security-section">
           <div className="security-scan" />
-          <div className="security-copy" data-reveal><p className="eyebrow light">CYBERSECURITY / TRUST BY DESIGN</p><h2>SECURE<br />WHAT <i>MATTERS.</i></h2><p>Build resilience with professionals who help protect the systems and people we depend on.</p></div>
+          <div className="security-copy" data-reveal="right"><p className="eyebrow light">CYBERSECURITY / TRUST BY DESIGN</p><h2>SECURE<br />WHAT <i>MATTERS.</i></h2><p>Build resilience with professionals who help protect the systems and people we depend on.</p></div>
           <div className="security-lines"><span>SOC</span><span>Security Analyst</span><span>Cloud Security</span><span>Network Security</span><span>Application Security</span><span>Risk &amp; Compliance</span></div>
           <div className="security-emblem" aria-hidden="true"><div className="shield-shape"><span>SECURE<br />BY DESIGN</span></div></div>
         </section>
 
         <section className="industries-section">
-          <div className="industries-title"><p className="eyebrow">THE HUMAN WORK OF EVERY INDUSTRY</p><h2>CAREERS<br />BEYOND<br /><i>TECHNOLOGY.</i></h2><p>Good work happens in every field. We help people find their place across more than tech.</p></div>
-          <div className="industry-mosaic">
+          <div className="industries-title" data-reveal="left"><p className="eyebrow">THE HUMAN WORK OF EVERY INDUSTRY</p><h2>CAREERS<br />BEYOND<br /><i>TECHNOLOGY.</i></h2><p>Good work happens in every field. We help people find their place across more than tech.</p></div>
+          <div className="industry-mosaic" data-reveal="right">
             <div className="industry-photo industry-finance" style={{ backgroundImage: `url(${image(photos.finance, 900)})` }}><span>FINANCE</span></div>
             <div className="industry-photo industry-health" style={{ backgroundImage: `url(${image(photos.health, 900)})` }}><span>HEALTHCARE</span></div>
             <div className="industry-photo industry-engineering" style={{ backgroundImage: `url(${image(photos.engineering, 900)})` }}><span>ENGINEERING</span></div>
@@ -869,13 +871,13 @@ function App() {
         </section> */}
 
         <section className="employer-section" id="employers">
-          <div className="employer-image" style={{ backgroundImage: `url(${image(photos.office, 1500)})` }}><span>THE RIGHT PEOPLE<br />CHANGE THE PICTURE.</span></div>
-          <div className="employer-copy" data-reveal><p className="eyebrow">FOR EMPLOYERS / TALENT PARTNERS</p><h2>THE RIGHT TALENT<br /><i>CHANGES</i> THE<br />WHOLE TEAM.</h2><p>Thoughtful staffing support for teams looking to meet the moment and build for what comes next.</p><div className="employer-services">{['Talent sourcing', 'Candidate screening', 'IT & non-IT staffing', 'Technical talent', 'Candidate pipeline support'].map((item) => <span key={item}><Check size={15} />{item}</span>)}</div><a href="/contact" className="button button-dark">Talk to our staffing team <ArrowRight size={17} /></a></div>
+          <div className="employer-image" data-reveal="left" style={{ backgroundImage: `url(${image(photos.office, 1500)})` }}><span>THE RIGHT PEOPLE<br />CHANGE THE PICTURE.</span></div>
+          <div className="employer-copy" data-reveal="right"><p className="eyebrow">FOR EMPLOYERS / TALENT PARTNERS</p><h2>THE RIGHT TALENT<br /><i>CHANGES</i> THE<br />WHOLE TEAM.</h2><p>Thoughtful staffing support for teams looking to meet the moment and build for what comes next.</p><div className="employer-services">{['Talent sourcing', 'Candidate screening', 'IT & non-IT staffing', 'Technical talent', 'Candidate pipeline support'].map((item) => <span key={item}><Check size={15} />{item}</span>)}</div><a href="/contact" className="button button-dark">Talk to our staffing team <ArrowRight size={17} /></a></div>
         </section>
 
         <section className="reviews-section" aria-labelledby="reviews-heading">
-          <div className="reviews-heading"><p className="eyebrow">THE EXPERIENCE, IN THEIR WORDS</p><h2 id="reviews-heading">BETTER, <i>TOGETHER.</i></h2><span>APPROVED CLIENT FEEDBACK</span></div>
-          <div className="review-wall" aria-label="Client testimonials">
+          <div className="reviews-heading" data-reveal="left"><p className="eyebrow">THE EXPERIENCE, IN THEIR WORDS</p><h2 id="reviews-heading">BETTER, <i>TOGETHER.</i></h2><span>APPROVED CLIENT FEEDBACK</span></div>
+          <div className="review-wall" data-reveal="right" aria-label="Client testimonials">
             {[
               {
                 className: 'review-forward fast',
@@ -922,23 +924,23 @@ function App() {
         </section>
 
         <section className="story-section" id="career-story">
-          <div className="story-image" style={{ backgroundImage: `url(${image(photos.story, 1600)})` }}><div className="story-image-caption"><span>ILLUSTRATIVE CAREER JOURNEY</span><span>NO INDIVIDUAL OUTCOME IMPLIED</span></div><h2>FROM SKILLS<br />TO <i>OPPORTUNITY.</i></h2></div>
-          <div className="story-steps">{['Profile', 'Resume', 'Preparation', 'Interview', 'Opportunity'].map((step, index) => <div key={step}><span>0{index + 1}</span><strong>{step}</strong>{index < 4 && <ArrowDown size={16} />}</div>)}</div>
+          <div className="story-image" data-reveal="left" style={{ backgroundImage: `url(${image(photos.story, 1600)})` }}><div className="story-image-caption"><span>ILLUSTRATIVE CAREER JOURNEY</span><span>NO INDIVIDUAL OUTCOME IMPLIED</span></div><h2>FROM SKILLS<br />TO <i>OPPORTUNITY.</i></h2></div>
+          <div className="story-steps" data-reveal="right">{['Profile', 'Resume', 'Preparation', 'Interview', 'Opportunity'].map((step, index) => <div key={step}><span>0{index + 1}</span><strong>{step}</strong>{index < 4 && <ArrowDown size={16} />}</div>)}</div>
         </section>
 
         <section className="faq-section" id="faq">
-          <div className="faq-title"><p className="eyebrow">GOOD QUESTIONS, CLEAR ANSWERS</p><h2>BEFORE WE<br /><i>BEGIN.</i></h2><a href="/contact" className="text-link">Still curious? Talk to us <ArrowUpRight size={16} /></a></div>
-          <div className="faq-list">{faqs.map(([question, answer], index) => <div className={activeFaq === index ? 'faq-item is-open' : 'faq-item'} key={question}><button type="button" aria-expanded={activeFaq === index} onClick={() => setActiveFaq(activeFaq === index ? null : index)}><span>{String(index + 1).padStart(2, '0')}</span><strong>{question}</strong><ChevronDown size={19} /></button><div className="faq-answer"><p>{answer}</p></div></div>)}</div>
+          <div className="faq-title" data-reveal="left"><p className="eyebrow">GOOD QUESTIONS, CLEAR ANSWERS</p><h2>BEFORE WE<br /><i>BEGIN.</i></h2><a href="/contact" className="text-link">Still curious? Talk to us <ArrowUpRight size={16} /></a></div>
+          <div className="faq-list" data-reveal="right">{faqs.map(([question, answer], index) => <div className={activeFaq === index ? 'faq-item is-open' : 'faq-item'} key={question}><button type="button" aria-expanded={activeFaq === index} onClick={() => setActiveFaq(activeFaq === index ? null : index)}><span>{String(index + 1).padStart(2, '0')}</span><strong>{question}</strong><ChevronDown size={19} /></button><div className="faq-answer"><p>{answer}</p></div></div>)}</div>
         </section>
 
-        <section className="final-cta">
+        <section className="final-cta" data-reveal="scale">
           <span className="eyebrow">THE NEXT CHAPTER IS YOURS</span><h2>YOUR NEXT<br /><i>MOVE</i><br />STARTS HERE.</h2><div className="final-actions"><a className="button button-dark" href="/careers">Find your opportunity <ArrowRight size={17} /></a><a className="button button-light" href="/contact">Talk to us <ArrowUpRight size={17} /></a></div><span className="cta-orbit" aria-hidden="true">D<span>·</span>C</span>
         </section>
       </main>
 
       <footer className="site-footer">
         <div className="footer-top"><a className="footer-brand" href="#top">DESIRE<br />TO CAREER<span>®</span></a><div className="footer-statement">CONNECTING TALENT<br />WITH <i>OPPORTUNITY.</i></div><a href="#top" className="back-top">BACK TO TOP <ArrowUpRight size={16} /></a></div>
-        <div className="footer-links"><div><span>CANDIDATES</span><a href="/services/career-support">Candidate support</a><Link to="/it">IT careers</Link><Link to="/non-it">Non-IT careers</Link><a href="#services">Our services</a></div><div><span>EMPLOYERS</span><a href="#employers">Staffing support</a><a href="/contact">Start a conversation</a><a href="#approach">Our approach</a></div><div><span>RESOURCES</span><a href="#resume">Sample resume</a><a href="#faq">Frequently asked questions</a><a href="/contact">Contact</a></div><div className="footer-contact"><span>LET&apos;S CONNECT</span><a href="/contact">Send us a message <ArrowUpRight size={14} /></a>{siteConfig.phoneUrl && <a href={siteConfig.phoneUrl}>{siteConfig.whatsappBusinessNumber}</a>}<a href={siteConfig.emailUrl}>{siteConfig.contactEmail}</a></div></div>
+        <div className="footer-links"><div><span>CANDIDATES</span><a href="/services/career-support">Candidate support</a><Link to="/it">IT careers</Link><Link to="/non-it">Non-IT careers</Link><a href="#services">Our services</a></div><div><span>EMPLOYERS</span><a href="#employers">Staffing support</a><a href="/contact">Start a conversation</a><a href="#approach">Our approach</a></div><div><span>RESOURCES</span><a href="#resume">Sample resume</a><a href="#faq">Frequently asked questions</a><a href="/contact">Contact</a></div><div className="footer-contact"><span>LET&apos;S CONNECT</span><a href="/contact">Send us a message <ArrowUpRight size={14} /></a>{siteConfig.phoneUrl && <a href={siteConfig.phoneUrl}>{siteConfig.callingNumber}</a>}<a href={siteConfig.emailUrl}>{siteConfig.contactEmail}</a></div></div>
         <div className="footer-bottom"><span>© {new Date().getFullYear()} DESIRE TO CAREER</span><span>CONNECTING TALENT WITH OPPORTUNITY</span><a href="#top">PRIVACY &amp; TERMS <ArrowUpRight size={12} /></a></div>
       </footer>
 
