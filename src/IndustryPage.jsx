@@ -26,7 +26,7 @@ function SectorFooter() {
     <footer className="sector-footer">
       <Link to="/" className="sector-footer-brand">DESIRE<br />TO CAREER<span>®</span></Link>
       <p>Connecting talent<br />with opportunity.</p>
-      <div><Link to="/it">IT careers</Link><Link to="/non-it">Non-IT careers</Link><a href="/contact">Contact our team <ArrowUpRight size={13} /></a></div>
+      <div><Link to="/it">IT careers</Link><Link to="/non-it">Non-IT careers</Link><a href="/contact">Contact our team <ArrowUpRight size={13} /></a>{siteConfig.phoneUrl && <a href={siteConfig.phoneUrl}>{siteConfig.whatsappBusinessNumber}</a>}<a href={siteConfig.emailUrl}>{siteConfig.contactEmail}</a></div>
       <span>© {new Date().getFullYear()} DESIRE TO CAREER</span>
     </footer>
   )

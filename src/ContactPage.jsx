@@ -18,42 +18,42 @@ export default function ContactPage() {
     }
   }, [])
 
-const submitContact = async (event) => {
-  event.preventDefault()
+  const submitContact = async (event) => {
+    event.preventDefault()
 
-  const form = event.currentTarget
-  const formData = new FormData(form)
+    const form = event.currentTarget
+    const formData = new FormData(form)
 
-  const data = new URLSearchParams()
+    const data = new URLSearchParams()
 
-  data.append('name', formData.get('name') || '')
-  data.append('email', formData.get('email') || '')
-  data.append('phone', formData.get('phone') || '')
-  data.append('personType', formData.get('personType') || '')
-  data.append('interest', formData.get('interest') || '')
-  data.append('message', formData.get('message') || '')
+    data.append('name', formData.get('name') || '')
+    data.append('email', formData.get('email') || '')
+    data.append('phone', formData.get('phone') || '')
+    data.append('personType', formData.get('personType') || '')
+    data.append('interest', formData.get('interest') || '')
+    data.append('message', formData.get('message') || '')
 
-  try {
-    setIsSubmitting(true)
+    try {
+      setIsSubmitting(true)
 
-    const response = await fetch('https://script.google.com/macros/s/AKfycbxvqqIqDggcVPBhDEvby-TA03z1dIk-gCxqKq4BThkVgcUeGCKGpaChLEXCgvsJS990/exec', {
-      method: 'POST',
-      mode: 'no-cors',
-      body: data,
-    })
+      const response = await fetch('https://script.google.com/macros/s/AKfycbxvqqIqDggcVPBhDEvby-TA03z1dIk-gCxqKq4BThkVgcUeGCKGpaChLEXCgvsJS990/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: data,
+      })
 
-    // With no-cors, the response is opaque.
-    // If the request reaches the endpoint, don't try response.json().
-    setFormSent(true)
-    form.reset()
+      // With no-cors, the response is opaque.
+      // If the request reaches the endpoint, don't try response.json().
+      setFormSent(true)
+      form.reset()
 
-  } catch (error) {
-    console.error('Form submission error:', error)
-    alert('Something went wrong. Please try again.')
-  } finally {
-    setIsSubmitting(false)
+    } catch (error) {
+      console.error('Form submission error:', error)
+      alert('Something went wrong. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
-}
 
   return (
     <div className="contact-page">
@@ -257,14 +257,14 @@ const submitContact = async (event) => {
                 {/* MESSAGE */}
                 <label>
                   Your message
-
                   <textarea
                     required
                     name="message"
                     rows="4"
                     placeholder="A little about what brings you here..."
-                  />
+                  ></textarea>
                 </label>
+                
 
                 {/* SUBMIT */}
                 <button
@@ -359,6 +359,15 @@ const submitContact = async (event) => {
           <br />
           with opportunity.
         </p>
+
+        {siteConfig.phoneUrl && (
+          <a className="contact-footer-phone" href={siteConfig.phoneUrl}>
+            {siteConfig.whatsappBusinessNumber}
+          </a>
+        )}
+        <a className="contact-footer-phone" href={siteConfig.emailUrl}>
+          {siteConfig.contactEmail}
+        </a>
 
         <span>
           © {new Date().getFullYear()} DESIRE TO CAREER

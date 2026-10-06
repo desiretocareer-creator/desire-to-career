@@ -503,7 +503,7 @@ function App() {
         style={{
           display: "block",
           marginTop: "25px",
-          fontSize: "48px",
+          fontSize: "52px",
           lineHeight: 1,
           color: "#1769e0",
         }}
@@ -938,7 +938,7 @@ function App() {
 
       <footer className="site-footer">
         <div className="footer-top"><a className="footer-brand" href="#top">DESIRE<br />TO CAREER<span>®</span></a><div className="footer-statement">CONNECTING TALENT<br />WITH <i>OPPORTUNITY.</i></div><a href="#top" className="back-top">BACK TO TOP <ArrowUpRight size={16} /></a></div>
-        <div className="footer-links"><div><span>CANDIDATES</span><a href="/services/career-support">Candidate support</a><Link to="/it">IT careers</Link><Link to="/non-it">Non-IT careers</Link><a href="#services">Our services</a></div><div><span>EMPLOYERS</span><a href="#employers">Staffing support</a><a href="/contact">Start a conversation</a><a href="#approach">Our approach</a></div><div><span>RESOURCES</span><a href="#resume">Sample resume</a><a href="#faq">Frequently asked questions</a><a href="/contact">Contact</a></div><div className="footer-contact"><span>LET&apos;S CONNECT</span><a href="/contact">Send us a message <ArrowUpRight size={14} /></a><p>Social and direct contact details can be added here when provided.</p></div></div>
+        <div className="footer-links"><div><span>CANDIDATES</span><a href="/services/career-support">Candidate support</a><Link to="/it">IT careers</Link><Link to="/non-it">Non-IT careers</Link><a href="#services">Our services</a></div><div><span>EMPLOYERS</span><a href="#employers">Staffing support</a><a href="/contact">Start a conversation</a><a href="#approach">Our approach</a></div><div><span>RESOURCES</span><a href="#resume">Sample resume</a><a href="#faq">Frequently asked questions</a><a href="/contact">Contact</a></div><div className="footer-contact"><span>LET&apos;S CONNECT</span><a href="/contact">Send us a message <ArrowUpRight size={14} /></a>{siteConfig.phoneUrl && <a href={siteConfig.phoneUrl}>{siteConfig.whatsappBusinessNumber}</a>}<a href={siteConfig.emailUrl}>{siteConfig.contactEmail}</a></div></div>
         <div className="footer-bottom"><span>© {new Date().getFullYear()} DESIRE TO CAREER</span><span>CONNECTING TALENT WITH OPPORTUNITY</span><a href="#top">PRIVACY &amp; TERMS <ArrowUpRight size={12} /></a></div>
       </footer>
 

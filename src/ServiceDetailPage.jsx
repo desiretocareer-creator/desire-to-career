@@ -1,6 +1,7 @@
 import { ArrowRight, ArrowUpRight, Check } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import SiteNavigation from './SiteNavigation'
+import { siteConfig } from './siteConfig'
 import { industryPages, servicePages } from './detailPages'
 
 const image = (id, width = 1400) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=85`
@@ -112,7 +113,7 @@ export default function ServiceDetailPage({ kind }) {
       <footer className="detail-footer">
         <Link to="/" className="detail-footer-brand">DESIRE<br />TO CAREER<span>®</span></Link>
         <p>Connecting talent<br />with opportunity.</p>
-        <div className="detail-footer-links"><Link to="/careers">Careers<ArrowUpRight size={13} /></Link><Link to="/contact">Contact<ArrowUpRight size={13} /></Link></div>
+        <div className="detail-footer-links"><Link to="/careers">Careers<ArrowUpRight size={13} /></Link><Link to="/contact">Contact<ArrowUpRight size={13} /></Link>{siteConfig.phoneUrl && <a href={siteConfig.phoneUrl}>{siteConfig.whatsappBusinessNumber}</a>}<a href={siteConfig.emailUrl}>{siteConfig.contactEmail}</a></div>
         <span>© {new Date().getFullYear()} DESIRE TO CAREER</span>
       </footer>
     </div>
