@@ -405,10 +405,11 @@ export default function SiteNavigation({ theme = 'dark' }) {
 }
 
 .brand-mark {
-  width: 48px;
-  height: 48px;
+  width: 62px;
+  height: 62px;
   flex: 0 0 auto;
   border-radius: 0;
+  border: 0;
   background: transparent;
   object-fit: contain;
 }
